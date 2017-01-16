@@ -15,6 +15,14 @@ public class Application {
 
     @Bean
     public CacheManager cacheManager() {
-        return new GuavaCacheManager("channels");
+        return new GuavaCacheManager("channel");
     }
+/*
+    @Bean
+    CommandLineRunner init(){
+        return args -> {
+
+        };
+    }*/
+
 }

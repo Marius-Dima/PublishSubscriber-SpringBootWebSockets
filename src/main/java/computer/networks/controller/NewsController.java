@@ -3,7 +3,7 @@ package computer.networks.controller;
 import computer.networks.model.Channel;
 import computer.networks.model.Message;
 import computer.networks.model.News;
-import computer.networks.model.ProfanityFilter;
+import computer.networks.service.ProfanityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

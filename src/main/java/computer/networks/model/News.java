@@ -1,21 +1,14 @@
 package computer.networks.model;
 
-public class News {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import javax.persistence.Entity;
+
+@Data
+@Entity
+@AllArgsConstructor
+public class News extends TransactionalEntity {
+    private static final long serialVersionUID = 1L;
     private String content;
-
-    public News() {
-    }
-
-    public News(String content) {
-        this.content = content;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }

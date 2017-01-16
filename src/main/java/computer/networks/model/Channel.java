@@ -1,47 +1,19 @@
 package computer.networks.model;
 
 
-import java.util.concurrent.atomic.AtomicInteger;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public class Channel {
-    private static final AtomicInteger counter = new AtomicInteger(0);
-    private Integer id;
+import javax.persistence.Entity;
+
+@Data
+@Entity
+@AllArgsConstructor
+public class Channel extends TransactionalEntity {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String description;
-
-    public Channel() {
-        this.id = counter.incrementAndGet();
-    }
-
-    public Channel(String name, String description) {
-        this.id = counter.incrementAndGet();
-        this.name = name;
-        this.description = description;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public void updateChannel(Channel channel) {
         this.name = channel.getName();

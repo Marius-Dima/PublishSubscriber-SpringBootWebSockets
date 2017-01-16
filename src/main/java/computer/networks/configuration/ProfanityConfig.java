@@ -1,6 +1,6 @@
 package computer.networks.configuration;
 
-import computer.networks.model.ProfanityFilter;
+import computer.networks.service.ProfanityFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

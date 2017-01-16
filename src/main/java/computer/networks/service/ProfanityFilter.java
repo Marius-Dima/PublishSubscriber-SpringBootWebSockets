@@ -1,4 +1,4 @@
-package computer.networks.model;
+package computer.networks.service;
 
 import java.util.Arrays;
 import java.util.HashSet;

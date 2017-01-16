@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -42,11 +41,7 @@ public class NewsController {
         return new Message(news.getContent() + " was published to " + channel + "!");
     }
 
-    @RequestMapping(value = "/api/channels", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Channel>> getChannelList() {
 
-        return new ResponseEntity<>(channelList, HttpStatus.OK);
-    }
 
     @RequestMapping(value = "/api/channels/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Channel> getChannelList(@PathVariable("id") Integer channelId) {

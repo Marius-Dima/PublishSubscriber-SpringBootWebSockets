@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class ChannelServiceImpl implements ChannelService {
@@ -30,6 +31,11 @@ public class ChannelServiceImpl implements ChannelService {
     @Cacheable(value = "channel", key = "#channelName")
     public Channel findByName(String channelName) {
         return channelRepository.findByName(channelName);
+    }
+
+    @Override
+    public List<Channel> saveAll(Iterable<Channel> channels) {
+        return channelRepository.save(channels);
     }
 
     @Override

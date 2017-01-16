@@ -1,10 +1,16 @@
 package computer.networks;
 
+import computer.networks.filter.RequestContext;
+import computer.networks.model.Channel;
+import computer.networks.service.ChannelService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.annotation.Bean;
+
+import java.util.HashSet;
 
 @SpringBootApplication
 public class Application {
@@ -17,12 +23,18 @@ public class Application {
     public CacheManager cacheManager() {
         return new GuavaCacheManager("channel");
     }
-/*
-    @Bean
-    CommandLineRunner init(){
-        return args -> {
 
+    @Bean
+    CommandLineRunner init(final ChannelService channelService) {
+        return args -> {
+            RequestContext.init();
+            final HashSet<Channel> channels = new HashSet<>();
+            channels.add(new Channel("PROTV", "Best news"));
+            channels.add(new Channel("PRIMA", "Focus news"));
+            channels.add(new Channel("ATOMIC", "Music news"));
+
+            channelService.saveAll(channels);
         };
-    }*/
+    }
 
 }

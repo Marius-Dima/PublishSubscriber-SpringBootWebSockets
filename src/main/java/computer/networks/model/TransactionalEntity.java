@@ -1,5 +1,6 @@
 package computer.networks.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import computer.networks.filter.RequestContext;
 import lombok.Data;
 import org.joda.time.DateTime;
@@ -29,9 +30,11 @@ public class TransactionalEntity implements Serializable {
     private String createdBy;
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private DateTime createdAt;
 
     private String updatedBy;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private DateTime updatedAt;
 
     @PrePersist

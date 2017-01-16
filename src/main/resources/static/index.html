@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tema 6. - Publish - Subscribe</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript :((</h2></noscript>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-6 space">
+            <div>Available Channels to subscribe to:</div>
+            <select id="select">
+                <option selected disabled>Choose Channel</option>
+            </select><span><b> OR </b></span>
+            <input type="text" id="channel" class="form-control" placeholder="Your news...">
+            <button id="addChannel" class="btn btn-default">Add New Channel</button>
+
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <button id="subscribe" class="btn btn-default" type="submit">Subscribe</button>
+                    <button id="unsubscribe" class="btn btn-default" type="submit">Unsubscribe
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <br/>
+                <div class="form-group">
+                    <button id="deleteChannel" class="btn btn-default">Remove Channel</button>
+                    <label for="content">Publish News!</label>
+                    <input type="text" id="content" class="form-control" placeholder="Your news...">
+                    <button id="send" class="btn btn-default" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="news_table" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Published News Thread</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

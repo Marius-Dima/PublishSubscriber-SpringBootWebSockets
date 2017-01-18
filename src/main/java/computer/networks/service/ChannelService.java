@@ -19,7 +19,7 @@ public interface ChannelService {
 
     Channel update(Channel channel);
 
-    void delete(Long id);
+    void delete(String channelName);
 
     void evictCache();
 

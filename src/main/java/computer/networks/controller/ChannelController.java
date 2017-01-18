@@ -44,7 +44,7 @@ public class ChannelController {
         return new ResponseEntity<>(channel, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/api/channels/{id}", method = RequestMethod.PUT,
+    @RequestMapping(value = "channels/{id}", method = RequestMethod.PUT,
             consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Channel> updateChannel(@PathVariable("id") Long id, @RequestBody Channel channel) {
         final Channel updatedChannel = channelService.update(channel);
@@ -55,9 +55,9 @@ public class ChannelController {
         return new ResponseEntity<>(updatedChannel, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/channels/{id}", method = RequestMethod.DELETE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteChannelByName(@PathVariable("id") Long channelId) {
-        channelService.delete(channelId);
+    @RequestMapping(value = "channels/{name}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteChannelByName(@PathVariable("name") String channelName) {
+        channelService.delete(channelName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

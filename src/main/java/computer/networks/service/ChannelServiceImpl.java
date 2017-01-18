@@ -59,9 +59,11 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @CacheEvict(value = "channel", key = "#id")
-    public void delete(Long id) {
-        channelRepository.delete(id);
+    @CacheEvict(value = "channel", key = "#channelName")
+    public void delete(String channelName) {
+        final Channel foundChannel = channelRepository.findByName(channelName);
+        if (foundChannel != null)
+            channelRepository.delete(foundChannel);
     }
 
     @Override

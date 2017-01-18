@@ -64,18 +64,25 @@ $(function () {
             });
         }
     });
-    /*
-     $.ajax({
-     type: "POST",
-     url: "/api/channels",
-     dataType: "json",
 
+    $("#addChannel").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/api/channels',
+            dataType: "json",
+            data: {
+                name: $('#name').val(),
+                description: $('#description').val()
+            }
+        });
+    });
 
-     });*/
-
-
-    $("#api").click(function () {
-        $.post("/api/channels", $("#api").serialize());
+    $("#deleteChannel").click(function () {
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/channels/' + $('#name').val(),
+            dataType: "json"
+        });
     });
 
     $("form").on('submit', function (e) {

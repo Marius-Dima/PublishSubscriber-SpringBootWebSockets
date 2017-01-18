@@ -2,6 +2,13 @@
 
 //Sort of like a HashMap holder to correlate subscribed&active channels
 var activeSubscriptions = {};
+var $name = jQuery("#name");
+var $description = jQuery("#description");
+
+var channel = {
+    name: $name.val(),
+    description: $description.val()
+};
 
 function toggleMenu() {
     /* Toggle between adding and removing the "active" class,
@@ -65,17 +72,22 @@ $(function () {
         }
     });
 
+
     $("#addChannel").click(function () {
         $.ajax({
             type: 'POST',
+            contentType: "application/json",
             url: '/api/channels',
             dataType: "json",
-            data: {
-                name: $('#name').val(),
-                description: $('#description').val()
+            timeout: 100000,
+            data: JSON.stringify(channel),
+            success: function (newChannel) {
+                var selectValue = "<option value='" + newChannel.name + "'>" + newChannel.name + "</option>";
+                $(selectValue).appendTo('#select');
             }
         });
     });
+
 
     $("#deleteChannel").click(function () {
         $.ajax({

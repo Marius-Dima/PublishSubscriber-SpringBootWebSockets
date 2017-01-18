@@ -2,13 +2,6 @@
 
 //Sort of like a HashMap holder to correlate subscribed&active channels
 var activeSubscriptions = {};
-var $name = jQuery("#name");
-var $description = jQuery("#description");
-
-var channel = {
-    name: $name.val(),
-    description: $description.val()
-};
 
 function toggleMenu() {
     /* Toggle between adding and removing the "active" class,
@@ -74,6 +67,10 @@ $(function () {
 
 
     $("#addChannel").click(function () {
+        var channel = {
+            name: $("#name").val(),
+            description: $("#description").val()
+        };
         $.ajax({
             type: 'POST',
             contentType: "application/json",

@@ -12,38 +12,59 @@
 <body>
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript :((</h2></noscript>
 <div id="main-content" class="container">
-    <div class="row">
-        <div class="col-md-6 space">
-            <div>Available Channels to subscribe to:</div>
-            <select id="select">
-                <option selected disabled>Choose Channel</option>
-            </select><span><b> OR </b></span>
-            <input type="text" id="channel" class="form-control" placeholder="Your news...">
-            <button id="addChannel" class="btn btn-default">Add New Channel</button>
 
+    <button class="accordion" id="accordion" onclick="toggleMenu()">Manage Current Channels</button>
 
-            <form class="form-inline">
-                <div class="form-group">
-                    <button id="subscribe" class="btn btn-default" type="submit">Subscribe</button>
-                    <button id="unsubscribe" class="btn btn-default" type="submit">Unsubscribe
-                    </button>
+    <div class="row" id="panel">
+        <br>
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="email">Channel Name</label>
+                <div class="col-sm-7">
+                    <input class="form-control" id="email" placeholder="Enter channel name">
                 </div>
-            </form>
-        </div>
-        <div class="col-md-6">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="pwd">Description</label>
+                <div class="col-sm-7">
+                    <input class="form-control" id="pwd" placeholder="Enter channel description">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-1">
+                    <button id="addChannel" class="btn btn-default btn-spacing">Add Channel</button>
+                    <button id="deleteChannel" class="btn btn-default btn-spacing">Remove Channel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="row">
+        <br>
+        <div class="col-md-10 col-sm-offset-1">
             <form class="form-inline">
-                <br/>
+                <select id="select" class="btn-primary-spacing">
+                    <option selected disabled>Choose Channel</option>
+                </select>
+                <button id="subscribe" class="btn btn-default btn-primary-spacing" type="submit">Subscribe</button>
+                <button id="unsubscribe" class="btn btn-default btn-primary-spacing " type="submit">Unsubscribe</button>
                 <div class="form-group">
-                    <button id="deleteChannel" class="btn btn-default">Remove Channel</button>
-                    <label for="content">Publish News!</label>
-                    <input type="text" id="content" class="form-control" placeholder="Your news...">
-                    <button id="send" class="btn btn-default" type="submit">Send</button>
+                    <input type="text" id="content" class="form-control btn-primary-spacing" placeholder="Your news...">
+                    <button id="send" class="btn btn-default btn-primary-spacing" type="submit">Send</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <div class="loader col-sm-offset-6" hidden></div>
+
+    <!--News TABLE-->
     <div class="row">
         <div class="col-md-12">
+            <br>
             <table id="news_table" class="table table-striped">
                 <thead>
                 <tr>

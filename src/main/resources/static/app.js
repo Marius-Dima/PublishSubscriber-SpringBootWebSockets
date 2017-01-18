@@ -3,6 +3,21 @@
 //Sort of like a HashMap holder to correlate subscribed&active channels
 var activeSubscriptions = {};
 
+function toggleMenu() {
+    /* Toggle between adding and removing the "active" class,
+     to highlight the button that controls the panel */
+    var button = document.getElementById("accordion");
+    button.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = document.getElementById("panel");
+    if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+    } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+}
+
 
 function subscribeToChannel(channel) {
     if (activeSubscriptions[channel] == null || !activeSubscriptions[channel].connected) {
@@ -54,9 +69,11 @@ $(function () {
         e.preventDefault();
     });
     $("#subscribe").click(function () {
+        $("div.loader").show();
         subscribeToChannel($("#select").val());
     });
     $("#unsubscribe").click(function () {
+        $("div.loader").hide();
         unsubscribeFromChannel($("#select").val());
     });
     $("#send").click(function () {

@@ -40,13 +40,9 @@ public class ChannelController {
         if (channel == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        if (channelService.findOne(channel.getId()) != null)
-            throw new RuntimeException("Channel " + channel.getName() + " is already present!");
-
         channelService.save(channel);
         return new ResponseEntity<>(channel, HttpStatus.CREATED);
     }
-
 
     @RequestMapping(value = "/api/channels/{id}", method = RequestMethod.PUT,
             consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
@@ -64,6 +60,5 @@ public class ChannelController {
         channelService.delete(channelId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 }

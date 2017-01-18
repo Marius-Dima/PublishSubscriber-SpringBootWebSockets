@@ -1,8 +1,10 @@
 # Spring WebSockets and REST Api
 
-Spring Application WebSocket with in-memory broker queue that enables instant news publishing to multiple subscribers clients running SockJS stompclient.
+Spring Application WebSocket @MessageMapping with in-memory broker queue that enables instant news to be published to multiple subscribers (clients) running SockJS stompclient.
 
-The list of Channels are saved in a H2 in-memory database and persisted using Spring Data JpaRepository.
+Clients can choose one of the available channels and subscribe to it to send and receive News in realtime.
+
+The list of Channels is saved in a H2 in-memory database using Spring Data JpaRepository.
 
 ## How to run
 

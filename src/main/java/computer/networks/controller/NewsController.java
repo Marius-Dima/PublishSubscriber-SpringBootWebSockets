@@ -1,5 +1,6 @@
 package computer.networks.controller;
 
+import computer.networks.exception.ProfanityException;
 import computer.networks.model.Message;
 import computer.networks.model.News;
 import computer.networks.service.ProfanityFilter;
@@ -18,7 +19,7 @@ public class NewsController {
     public Message publishNewsToChannel(@DestinationVariable String channel, News news) throws Exception {
         final Boolean blockMsg = profanityFilter.checkMessage(news.getContent());
         if (blockMsg)
-            throw new RuntimeException("Message was not published because it contains profanities!");
+            throw new ProfanityException("Message was not published because it contains profanities!");
 
         return new Message(news.getContent() + " was published to " + channel + "!");
     }

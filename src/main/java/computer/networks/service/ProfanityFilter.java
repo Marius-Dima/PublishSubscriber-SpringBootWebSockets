@@ -1,9 +1,12 @@
 package computer.networks.service;
 
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 public class ProfanityFilter {
     private Set<String> blockedWords = new HashSet<>();
 
@@ -18,14 +21,5 @@ public class ProfanityFilter {
                 .filter(word -> blockedWords.contains(word)) //
                 .count();
         return profanityCount > 0;
-    }
-
-
-    public Set<String> getBlockedWords() {
-        return blockedWords;
-    }
-
-    public void setBlockedWords(Set<String> blockedWords) {
-        this.blockedWords = blockedWords;
     }
 }

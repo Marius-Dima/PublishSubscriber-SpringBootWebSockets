@@ -1,4 +1,8 @@
-# How to run
+# Spring WebSockets and REST Api
+
+Application uses an in-memory broker to 
+
+## How to run
 
         gradlew.bat bootRun
         
@@ -80,6 +84,6 @@
                         
 ### Delete channel by name [DELETE /api/channels/{name}]
 Deletes a channel identified by channel Name
-                                   
-       
-        
+                                           
++ Request (application/json) DELETE /api/channels/MTV
+            

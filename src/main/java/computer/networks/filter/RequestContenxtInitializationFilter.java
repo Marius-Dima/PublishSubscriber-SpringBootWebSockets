@@ -18,6 +18,5 @@ public class RequestContenxtInitializationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         RequestContext.init();
         filterChain.doFilter(servletRequest, servletResponse);
-
     }
 }

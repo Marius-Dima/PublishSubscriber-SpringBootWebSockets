@@ -64,6 +64,19 @@ $(function () {
             });
         }
     });
+    /*
+     $.ajax({
+     type: "POST",
+     url: "/api/channels",
+     dataType: "json",
+
+
+     });*/
+
+
+    $("#api").click(function () {
+        $.post("/api/channels", $("#api").serialize());
+    });
 
     $("form").on('submit', function (e) {
         e.preventDefault();

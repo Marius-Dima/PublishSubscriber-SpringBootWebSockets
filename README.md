@@ -1,6 +1,8 @@
 # Spring WebSockets and REST Api
 
-Application uses an in-memory broker to 
+Spring Application WebSocket with in-memory broker queue that enables instant news publishing to multiple subscribers clients running SockJS stompclient.
+
+The list of Channels are saved in a H2 in-memory database and persisted using Spring Data JpaRepository.
 
 ## How to run
 
@@ -12,7 +14,9 @@ Application uses an in-memory broker to
   ##### REST API endpoint http://localhost:8080/api
         
         
-### Get user channels [GET /api/channels]
+### Following REST endpoints are also available for CRUD operations on the available Channels:
+
+#### Get user channels [GET /api/channels]
 
 + Response (application/json)
 
@@ -31,7 +35,7 @@ Application uses an in-memory broker to
             }
           ]
         
-### Add new channel [POST /api/channels]
+#### Add new channel [POST /api/channels]
                    
 + Request (application/json)
     
@@ -48,7 +52,7 @@ Application uses an in-memory broker to
             "description": "Music news"
           }
                 
-### Update channel by id [PUT /api/channels/{id}]
+#### Update channel by id [PUT /api/channels/{id}]
                    
 + Request (application/json)
     
@@ -65,7 +69,7 @@ Application uses an in-memory broker to
             "description": "Music news"
           }      
                     
-### Update channel by name [PUT /api/channels/{name}]
+#### Update channel by name [PUT /api/channels/{name}]
                    
 + Request (application/json)
     
@@ -82,7 +86,7 @@ Application uses an in-memory broker to
             "description": "Music news"
           }
                         
-### Delete channel by name [DELETE /api/channels/{name}]
+#### Delete channel by name [DELETE /api/channels/{name}]
 Deletes a channel identified by channel Name
                                            
 + Request (application/json) DELETE /api/channels/MTV

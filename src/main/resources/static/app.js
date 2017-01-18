@@ -87,10 +87,16 @@ $(function () {
 
 
     $("#deleteChannel").click(function () {
+        var channelName = $('#name').val();
         $.ajax({
             type: 'DELETE',
-            url: '/api/channels/' + $('#name').val(),
-            dataType: "json"
+            url: '/api/channels/' + channelName,
+            dataType: "json",
+            success: function () {
+                $("#select").find("option").filter(function () {
+                    return $.trim($(this).text()) == channelName
+                }).remove();
+            }
         });
     });
 

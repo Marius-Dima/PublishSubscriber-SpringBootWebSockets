@@ -31,7 +31,7 @@ public class Application {
             final HashSet<Channel> channels = new HashSet<>();
             channels.add(new Channel("PROTV", "Best news"));
             channels.add(new Channel("PRIMA", "Focus news"));
-            channels.add(new Channel("ATOMIC", "Music news"));
+            channels.add(new Channel("ATOMIC", "Atomic news"));
 
             channelService.saveAll(channels);
         };

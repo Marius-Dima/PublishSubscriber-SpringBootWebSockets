@@ -4,7 +4,6 @@ import computer.networks.model.Channel;
 import computer.networks.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +38,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @CachePut(value = "channel", key = "#channel.id")
+    @Cacheable(value = "channel", key = "#channel.id")
     public Channel save(Channel channel) {
         if (channel.getId() != null)
             return null;
@@ -47,7 +46,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @CachePut(value = "channel", key = "#channel.id")
+    @Cacheable(value = "channel", key = "#channel.id")
     public Channel update(Channel channel) {
         final Channel persistedChannel = channelRepository.findOne(channel.getId());
 

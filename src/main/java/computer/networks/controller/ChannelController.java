@@ -6,14 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @Controller
 @RequestMapping(value = "api")
@@ -22,20 +17,18 @@ public class ChannelController {
     @Autowired
     private ChannelService channelService;
 
-    @RequestMapping(value = "channels", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "channels")
     public ResponseEntity<Collection<Channel>> getChannels() {
         return new ResponseEntity<>(channelService.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "channels/{id}", method = RequestMethod.GET,
-            produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "channels/{id}")
     public ResponseEntity<Channel> getChannel(@PathVariable("id") Long channelId) {
         final Channel channel = channelService.findOne(channelId);
         return new ResponseEntity<>(channel, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "channels", method = RequestMethod.POST,
-            consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "channels")
     public ResponseEntity<Channel> addChannel(@RequestBody Channel channel) {
         if (channel == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -44,8 +37,7 @@ public class ChannelController {
         return new ResponseEntity<>(channel, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "channels/{id}", method = RequestMethod.PUT,
-            consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping(value = "channels/{id}")
     public ResponseEntity<Channel> updateChannel(@PathVariable("id") Long id, @RequestBody Channel channel) {
         final Channel updatedChannel = channelService.update(channel);
 
@@ -55,9 +47,21 @@ public class ChannelController {
         return new ResponseEntity<>(updatedChannel, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "channels/{name}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteChannelByName(@PathVariable("name") String channelName) {
-        channelService.delete(channelName);
+    @DeleteMapping(value = "channels/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Long id) {
+        channelService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(value = "channels")
+    public ResponseEntity delete(@RequestBody Channel channel) {
+        if (channel == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        final Channel foundChannel = channelService.findByName(channel.getName());
+
+        if (foundChannel != null)
+            channelService.delete(foundChannel.getId());
+
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

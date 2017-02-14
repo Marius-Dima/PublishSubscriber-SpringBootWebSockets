@@ -4,7 +4,7 @@ import computer.networks.model.Channel;
 import computer.networks.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -21,13 +21,13 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @Cacheable(value = "channel", key = "#channelId")
+    @CachePut(value = "channel", key = "#channelId")
     public Channel findOne(Long channelId) {
         return channelRepository.findOne(channelId);
     }
 
     @Override
-    @Cacheable(value = "channel", key = "#channelName")
+    @CachePut(value = "channel", key = "#channelName")
     public Channel findByName(String channelName) {
         return channelRepository.findByName(channelName);
     }
@@ -38,7 +38,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @Cacheable(value = "channel", key = "#channel.id")
+    @CachePut(value = "channel", key = "#channel.id")
     public Channel save(Channel channel) {
         if (channel.getId() != null)
             return null;
@@ -46,7 +46,7 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @Cacheable(value = "channel", key = "#channel.id")
+    @CachePut(value = "channel", key = "#channel.id")
     public Channel update(Channel channel) {
         final Channel persistedChannel = channelRepository.findOne(channel.getId());
 
@@ -58,9 +58,9 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    @CacheEvict(value = "channel", key = "#channelName")
-    public void delete(String channelName) {
-        final Channel foundChannel = channelRepository.findByName(channelName);
+    @CacheEvict(value = "channel", key = "#channelId")
+    public void delete(Long channelId) {
+        final Channel foundChannel = channelRepository.findOne(channelId);
         if (foundChannel != null)
             channelRepository.delete(foundChannel);
     }

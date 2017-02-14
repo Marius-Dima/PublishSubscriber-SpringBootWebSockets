@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.HashSet;
 
-@SpringBootApplication
 @EnableCaching
+@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
